@@ -8,28 +8,24 @@ function createFeatures(earthquakeData) {
     // Define a function we want to run once for each feature in the features array
     // Give each feature a popup describing the place and time of the earthquake
     function onEachFeature(feature, layer) {
-        layer.bindPopup("<h3>" + feature.properties.place +
+      layer.bindPopup("<h3>" + feature.properties.place +
         "</h3><hr><p>" + new Date(feature.properties.time) + "<br>" + "Magnitude: " + feature.properties.mag + "</p>");
     }
-    // var EQDepth= feature.geometry.coordinates[2]
-    // var EQMag = feature.properties.mag 
-
+  
     // Create a GeoJSON layer containing the features array on the earthquakeData object
     // Run the onEachFeature function once for each piece of data in the array
     var earthquakes = L.geoJSON(earthquakeData, {
       onEachFeature: onEachFeature
     });
-   
-    
+  
     // Sending our earthquakes layer to the createMap function
     createMap(earthquakes);
   }
   
   function createMap(earthquakes) {
-
   
     // Define streetmap and darkmap layers
-    var quakemap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
+    var streetmap = L.tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}", {
       attribution: "© <a href='https://www.mapbox.com/about/maps/'>Mapbox</a> © <a href='http://www.openstreetmap.org/copyright'>OpenStreetMap</a> <strong><a href='https://www.mapbox.com/map-feedback/' target='_blank'>Improve this map</a></strong>",
       tileSize: 512,
       maxZoom: 18,
@@ -45,12 +41,6 @@ function createFeatures(earthquakeData) {
       accessToken: API_KEY
     });
   
-    // var circles = L.circle([earthquakes], {
-    //     color: 'red',
-    //     fillColor: '#f03',
-    //     fillOpacity: 0.5,
-    //     radius: EGMag*10
-    // }).addTo(mymap);
 
     // var markers = L.markers({
     //     radius: feature.properties.mag * 10,
