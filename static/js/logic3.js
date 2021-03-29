@@ -22,18 +22,19 @@ function markerSize(population) {
 var url = "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/significant_month.geojson"
 
 d3.json(url, function(data) { 
-//     createFeatures(data.features);
-// }); 
+    createFeatures(data.features);
+}); 
 
 // Loop through the cities array and create one marker for each city object
-    for (var i = 0; i < cities.length; i++) {
-    L.circle(cities[i].geometry.coordinates, {
+function createFeatures(earthquakeData){    
+    for (var i = 0; i < features.length; i++) {
+    L.circle(feature[i].geometry.coordinates, {
         fillOpacity: 0.75,
         color: "white",
         fillColor: "purple",
         // Setting our circle's radius equal to the output of our markerSize function
         // This will make our marker's size proportionate to its population
-        radius: markerSize(cities[i].properties.mag)
+        radius: markerSize(feature[i].properties.mag)
     }).bindPopup("<h3>" + feature.properties.place +
     "</h3><hr><p>" + new Date(feature.properties.time) + "<br>" + "Magnitude: " + feature.properties.mag + "</p>").addTo(myMap);
-    }});
+    }};

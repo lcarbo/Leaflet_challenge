@@ -24,14 +24,14 @@ var myMap = L.map("map", {
 
   // Grab data with d3
   d3.json(geoData, function(data) {
-    var EQDepth= features.geometry.coordinates[2]
-    var EQMag = features.properties.mag 
+    // var EQDepth= features.geometry.coordinates[2]
+    // var EQMag = features.properties.mag 
 
     // Create a new choropleth layer
     geojson = L.choropleth(data, {
   
       // Define what  property in the features to use
-      valueProperty: EQDepth,
+      // valueProperty: EQDepth,
   
       // Set color scale
       scale: ["#ffffb2", "#b10026"],
@@ -41,7 +41,6 @@ var myMap = L.map("map", {
   
       // q for quartile, e for equidistant, k for k-means
       mode: "e",
-      size: EQMag,
       style: {
         // Border color
         color: "#fff",
